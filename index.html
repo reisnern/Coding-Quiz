@@ -8,13 +8,36 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
   </head>
-<body>
-    <!-- Header start -->
-    <header class = "High Score">
-        <!--High scores button -->
-        <button id = "view-high-scores">View High Scores</button>
-        <!-- Timer Start-->
-        <div id = timer>Time: <span id = "countdown">0</span> s</div>
-    </header>
 
-</body>
+  <body>
+      <!-- Header -->
+    <header class = "View">
+      <!-- view high scores button -->
+      <button id = "High-Score">View High Scores</button>
+      <!-- timer -->
+      <div id = timer>Time: <span id = "countdown">0</span> s</div>
+  </header>
+
+  <main>    
+    <!-- Container-1 -->
+    <div id = "Container1" class = "View">
+        <h1>Coding Quiz Challenge</h1>
+        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+        <!-- Start -->
+        <button id = "start-button">Start Quiz</button>
+    </div>
+
+    <!-- Container-2 -->
+    <div id = "Container-2" class = "hide">
+        <div id = "questions"></div>
+        <div class = "choices">
+            <ol>
+                <!-- option buttons -->
+                <li><button class = "Choice-1"></button></li>
+                <li><button class = "Choice-2"></button></li>
+                <li><button class = "Choice-3"></button></li>
+                <li><button class = "Choice-4"></button></li>
+            </ol>    
+        </div>
+    </div>
+  </body>
