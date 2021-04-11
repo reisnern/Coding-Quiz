@@ -1,8 +1,8 @@
-// define variables for containers
-var Container1 = document.querySelector("header"); 
+// Define variables for containers
+var HeaderE = document.querySelector("header"); 
+var Container1 = document.querySelector("#Container1");
 var Container2 = document.querySelector("#Container2");
-var Container3 = document.querySelector("#Container3");
-var Container4 = document.querySelector("#Container4"); 
+var Container3 = document.querySelector("#Container3"); 
 var Container5 = document.querySelector("#Container5");
 
 
@@ -10,17 +10,18 @@ var Container5 = document.querySelector("#Container5");
 var StartButton = document.querySelector("#start-button");
 StartButton.addEventListener("click", StartCodeQuiz)
 
-function Start() {
+function StartCodeQuiz() {
 
 // View & Shield Containers
-Container1.setAttribute("class", "View");
-Container2.setAttribute("class", "Shield");
-Container3.setAttribute("class", "View");
-Container4.setAttribute("class", "Shield");
+HeaderE.setAttribute("class", "View");
+Container1.setAttribute("class", "Shield");
+Container2.setAttribute("class", "View");
+Container3.setAttribute("class", "Shield");
 Container5.setAttribute("class", "Shield");
 
 // Timer Start
 TimerStart();
+
 // Show Questions
 ShowQuestion();
 }
@@ -28,10 +29,10 @@ ShowQuestion();
 function Results() {
 
     // View & Shield applicable containers
-    Container1.setAttribute("class", "View");
+    HeaderE.setAttribute("class", "View");
+    Container1.setAttribute("class", "Shield");
     Container2.setAttribute("class", "Shield");
-    Container3.setAttribute("class", "Shield");
-    Container4.setAttribute("class", "View");
+    Container3.setAttribute("class", "View");
     Container5.setAttribute("class", "Shield");
 
     // View Results and Stop Timer
@@ -46,7 +47,7 @@ var countdownTimer = document.querySelector("#countdown");
 var timeLeft = 76;
 var timeInterval;
 
-function startTimer() {
+function TimerStart() {
     timeInterval = setInterval(function () {
         
         // Timer count down 
@@ -55,22 +56,21 @@ function startTimer() {
         
         // when timer is zero, quiz ends
         if (timeLeft <= 0) {
-            endQuiz();
+            Results();
         }
     }, 1000);
 }
 
 //Start Questions
-var questions = document.querySelector("#questions");
+var Questions = document.querySelector("#questions");
 var ChoiceOne = document.querySelector(".Choice-1");
 var ChoiceTwo = document.querySelector(".Choice-2");
 var ChoiceThree = document.querySelector(".Choice-3");
 var ChoiceFour = document.querySelector(".Choice-4");
-var quizIndex = 0;
-var quiz = [
+var QuizIndex = 0;
+var Quiz = [
     {
-        question: "Commonly used data types DO NOT include:",
-        
+        question: "Commonly used data types DO NOT include:",  
         Choices: ["strings", "booleans", "alerts", "numbers"],
         answer: "alerts"
     },
@@ -98,11 +98,11 @@ var quiz = [
 
 //Questions 
 function ShowQuestion() {
-    var AskQuestions = quiz[quizIndex];
+    var AskQuestions = Quiz[QuizIndex];
 
-    // quiz ends after the last question is rendered
-    if (quizIndex === quiz.length) {
-        endQuiz();
+    // Quiz ends after the last question is Answered
+    if (QuizIndex === Quiz.length) {
+        Results();
     } else {
         questions.innerHTML = AskQuestions.question;
         ChoiceOne.innerHTML = AskQuestions.Choices[0];
@@ -112,21 +112,21 @@ function ShowQuestion() {
     }
 }
 // Answers To Questions
-questions.addEventListener("click", ShowAnswer);
+Questions.addEventListener("click", ShowAnswer);
 ChoiceTwo.addEventListener("click", ShowAnswer);
 ChoiceThree.addEventListener("click", ShowAnswer);
 ChoiceFour.addEventListener("click", ShowAnswer);
 
-var Contaianer4 = document.querySelector("#container4"); 
+var Contaianer4 = document.querySelector("#Container4"); 
 
 function ShowAnswer (event) {
     var selectedChoice = event.target;
     
     // Show if Answer is Correct or Not
-    if (selectedChoice.textContent === quiz[quizIndex].answer) {
+    if (selectedChoice.textContent === Quiz[QuizIndex].answer) {
         
         // Show next question
-        quizIndex++;
+        QuizIndex++;
         ShowQuestion();
 
         // Answer is Correct
@@ -139,8 +139,8 @@ function ShowAnswer (event) {
         
         // time counts down and shows the next question
         timeLeft -= 10;
-        quizIndex++;
-        renderQuestion();
+        QuizIndex++;
+        ShowQuestion();
 
         // Answer is Incorrect
         Container4.setAttribute("class", "View");
@@ -151,32 +151,105 @@ function ShowAnswer (event) {
     }
 }
 // Scoring Functions
-var submitButton = document.querySelector("#submit-button");
-submitButton.addEventListener("click", saveScore);
+var Submit = document.querySelector("#Submit");
+Submit.addEventListener("click", Save);
 
-var initialInput = document.querySelector("#initials"); 
-var userScore = document.querySelector("#user-score"); 
+var Initials = document.querySelector("#initials"); 
+var Score = document.querySelector("#Score"); 
 var userInitials;
 var allScores = [];
 
-function saveScore(event) {
+function Save(event) {
     event.preventDefault();
     
-    var userInfo = {
-        userScore: timeLeft,
-        userInitials: initialInput.value.trim()
+    var Info = {
+        Score: timeLeft,
+        userInitials: Initials.value.trim()
     };
 
-    // only adds userInfo if input field is not empty
+    // To add Info only if input field is filled
     if (userInitials === "") {
         alert("Field cannot be left blank");
         return false;
     } else {
         
-        // add score to allScores array
-        allScores.push(userInfo);
-        // save userInfo to localStorage
-        localStorage.setItem("userInfo", JSON.stringify(allScores));
-        renderScores();
+        // Add score to array
+        allScores.push(Info);
+        // Save to localStorage
+        localStorage.setItem("Info", JSON.stringify(allScores));
+        ShowScores();
     }
+}
+
+// Score Chart
+var HighScore = document.querySelector("#High-Score");
+HighScore.addEventListener("click", ShowScores);
+
+var Score = document.querySelector("#Score");
+
+function ShowScores() {
+    
+    // View & Shield applicable containers
+    HeaderE.setAttribute("class", "Shield");
+    Container1.setAttribute("class", "Shield");
+    Container2.setAttribute("class", "Shield");
+    Container3.setAttribute("class", "Shield");
+    Container5.setAttribute("class", "View");
+
+    // Get Info from localStorage
+    var Saved = JSON.parse(localStorage.getItem("Info"));
+  
+    // Checks for data in localStorage
+    if (Saved !== null) {
+        allScores = Saved;
+    } else {
+        allScores = [];
+    }
+
+    // Sort Scores
+    allScores.sort(function (a,b) {
+        return b.userScore - a.userScore;
+    });
+
+    // Clear the scores
+    Score.textContent = "";
+
+    // New li for each score 
+    for (var i = 0; i < allScores.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = `${allScores[i].userScore} - ${allScores[i].userInitials}`;
+        li.setAttribute("data-index", i);
+        li.setAttribute("class", "#Score");
+        Score.appendChild(li);
+      }    
+}
+
+// Clear Results
+var Clear = document.querySelector("#Clear");
+Clear.addEventListener("click", ClearResults);
+
+function ClearResults() {
+    localStorage.clear();
+    Score.textContent = "";
+}
+
+// Go-Back
+var GoBack = document.querySelector("#Go-Back");
+GoBack.addEventListener("click", ResetAll);
+
+function ResetAll() {
+
+    // View & Shield applicable containers
+    HeaderE.setAttribute("class", "View");
+    Container1.setAttribute("class", "View");
+    Container2.setAttribute("class", "Shield");
+    Container3.setAttribute("class", "Shield");
+    Container5.setAttribute("class", "Shield");
+    Container4.setAttribute("class", "Shield");
+    
+    // Reset
+    timeLeft = 76;
+    QuizIndex = 0;
+    initialInput.value = "";
+    countdownTimer.textContent = "0";
 }
