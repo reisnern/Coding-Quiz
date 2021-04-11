@@ -52,29 +52,29 @@ main {
     margin: 5px;
 }
 
-#Container-1,
-#Container-5 {
+#Container1,
+#Container5 {
     text-align: center;
     
 }
 
-#Container-1 p,
-#Container-4 p,
+#Container1 p,
+#Container4 p,
 label {
     font-size: 1.25em;
     padding-bottom: 25px;
 }
 
-#Container-1 h1,
-#Container-4 h1, 
-#high-score-container h1 {
+#Container1 h1,
+#Container4 h1, 
+#COntainer3 h1 {
     font-size: 2em;
     padding: 25px 0 25px 0;
 }
 
-#Container-2,
-#Container-4,
-#Container-5 {
+#Container2,
+#Container4,
+#Container5 {
     text-align: left;
 }
 
