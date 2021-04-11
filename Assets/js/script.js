@@ -95,3 +95,19 @@ var quiz = [
         answer: "console log"
     }
 ];
+
+//Questions 
+function ShowQuestion() {
+    var AskQuestions = quiz[quizIndex];
+
+    // quiz ends after the last question is rendered
+    if (quizIndex === quiz.length) {
+        endQuiz();
+    } else {
+        questions.innerHTML = AskQuestions.question;
+        ChoiceOne.innerHTML = AskQuestions.Choices[0];
+        ChoiceTwo.innerHTML = AskQuestions.Choices[1];
+        ChoiceThree.innerHTML = AskQuestions.Choices[2];
+        ChoiceFour.innerHTML = AskQuestions.Choices[3];  
+    }
+}
