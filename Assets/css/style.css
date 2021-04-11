@@ -1,0 +1,60 @@
+/* Root */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+
+body {
+    max-width: 1200px;
+    padding: 25px;
+    margin: auto;
+}
+
+button {
+    background-color: rgb(72, 61, 141);
+    color: rgb(255, 255, 255);
+    font-size: 1.25em;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgb(194, 18, 129);
+}
+
+header {
+    clear: both;
+}
+
+main {
+    text-align: center;
+    padding: 200px;
+}
+
+.View {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.High-Score {
+    float: left;
+}
+
+#Timer {
+    float: right;
+    font-size: 1.25em;
+    padding: 10px;
+    margin: 5px;
+}
+
+#Container-1,
+#high-score-container {
+    text-align: center;
+    
+}
+
