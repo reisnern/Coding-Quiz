@@ -150,3 +150,33 @@ function ShowAnswer (event) {
         }, 1000);
     }
 }
+// Scoring Functions
+var submitButton = document.querySelector("#submit-button");
+submitButton.addEventListener("click", saveScore);
+
+var initialInput = document.querySelector("#initials"); 
+var userScore = document.querySelector("#user-score"); 
+var userInitials;
+var allScores = [];
+
+function saveScore(event) {
+    event.preventDefault();
+    
+    var userInfo = {
+        userScore: timeLeft,
+        userInitials: initialInput.value.trim()
+    };
+
+    // only adds userInfo if input field is not empty
+    if (userInitials === "") {
+        alert("Field cannot be left blank");
+        return false;
+    } else {
+        
+        // add score to allScores array
+        allScores.push(userInfo);
+        // save userInfo to localStorage
+        localStorage.setItem("userInfo", JSON.stringify(allScores));
+        renderScores();
+    }
+}
