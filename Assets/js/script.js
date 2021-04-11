@@ -7,4 +7,24 @@ var Container5 = document.querySelector("#Container5");
 
 
 // quiz start
-var startButton = document.querySelector("#start-button");
+var StartButton = document.querySelector("#start-button");
+StartButton.addEventListener("click", StartCodeQuiz)
+
+function Start() {
+
+// View & Shield Containers
+Container1.setAttribute("class", "View");
+Container2.setAttribute("class", "Shield");
+Container3.setAttribute("class", "View");
+Container4.setAttribute("class", "Shield");
+Container5.setAttribute("class", "Shield");
+
+// Timer Start
+TimerStart();
+// Show Questions
+ShowQuestion();
+}
+
+function Results() {
+    
+}
