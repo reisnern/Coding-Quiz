@@ -111,3 +111,42 @@ function ShowQuestion() {
         ChoiceFour.innerHTML = AskQuestions.Choices[3];  
     }
 }
+// Answers To Questions
+questions.addEventListener("click", ShowAnswer);
+ChoiceTwo.addEventListener("click", ShowAnswer);
+ChoiceThree.addEventListener("click", ShowAnswer);
+ChoiceFour.addEventListener("click", ShowAnswer);
+
+var Contaianer4 = document.querySelector("#container4"); 
+
+function ShowAnswer (event) {
+    var selectedChoice = event.target;
+    
+    // Show if Answer is Correct or Not
+    if (selectedChoice.textContent === quiz[quizIndex].answer) {
+        
+        // Show next question
+        quizIndex++;
+        ShowQuestion();
+
+        // Answer is Correct
+        Container4.setAttribute("class", "View");
+        Container4.textContent = "Correct!";
+        setTimeout(function () {
+            Container4.textContent = "";    
+        }, 1000);
+    } else {
+        
+        // time counts down and shows the next question
+        timeLeft -= 10;
+        quizIndex++;
+        renderQuestion();
+
+        // Answer is Incorrect
+        Container4.setAttribute("class", "View");
+        Container4.textContent = "Incorrect!";
+        setTimeout(function () {
+            Container4.textContent = "";    
+        }, 1000);
+    }
+}
