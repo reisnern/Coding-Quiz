@@ -53,8 +53,67 @@ main {
 }
 
 #Container-1,
-#high-score-container {
+#Container-5 {
     text-align: center;
     
 }
 
+#Container-1 p,
+#Container-4 p,
+label {
+    font-size: 1.25em;
+    padding-bottom: 25px;
+}
+
+#Container-1 h1,
+#Container-4 h1, 
+#high-score-container h1 {
+    font-size: 2em;
+    padding: 25px 0 25px 0;
+}
+
+#Container-2,
+#Container-4,
+#Container-5 {
+    text-align: left;
+}
+
+#questions {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 25px 0 25px 0;
+}
+
+.choices li {
+    list-style: none;
+}
+
+#Container-5 {
+    font-size: 1.25em;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(194, 18, 129);
+    padding: 10px 0 10px 0;
+}
+
+#Score {
+    margin-bottom: 15px;
+}
+
+#Score li {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    min-width: 100px;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    background-color: rgb(255, 255, 255);
+}
+
+input {
+    font-size: 1.25em;
+    max-width: 150px;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    background-color: rgb(255, 255, 255);
+}
