@@ -1,9 +1,9 @@
 // Define variables for containers
 var HeaderE = document.querySelector("header"); 
-var Container1 = document.querySelector("#Container1");
-var Container2 = document.querySelector("#Container2");
-var Container3 = document.querySelector("#Container3"); 
-var Container5 = document.querySelector("#Container5");
+var ContainerOne = document.querySelector("#Container1");
+var ContainerTwo = document.querySelector("#Container2");
+var ContainerThree = document.querySelector("#Container3"); 
+var ContainerFive = document.querySelector("#Container5");
 
 
 // quiz start
@@ -14,14 +14,13 @@ function StartCodeQuiz() {
 
     // View & Shield Containers
     HeaderE.setAttribute("class", "View");
-    Container1.setAttribute("class", "Shield");
-    Container2.setAttribute("class", "View");
-    Container3.setAttribute("class", "Shield");
-    Container5.setAttribute("class", "Shield");
+    ContainerOne.setAttribute("class", "Shield");
+    ContainerTwo.setAttribute("class", "View");
+    ContainerThree.setAttribute("class", "Shield");
+    ContainerFive.setAttribute("class", "Shield");
 
     // Timer Start
     TimerStart();
-
     // Show Questions
     ShowQuestion();
 }
@@ -30,10 +29,10 @@ function Results() {
 
     // View & Shield applicable containers
     HeaderE.setAttribute("class", "View");
-    Container1.setAttribute("class", "Shield");
-    Container2.setAttribute("class", "Shield");
-    Container3.setAttribute("class", "View");
-    Container5.setAttribute("class", "Shield");
+    ContainerOne.setAttribute("class", "Shield");
+    ContainerTwo.setAttribute("class", "Shield");
+    ContainerThree.setAttribute("class", "View");
+    ContainerFive.setAttribute("class", "Shield");
 
     // View Results and Stop Timer
     userResults.textContent = timeLeft;
@@ -42,7 +41,6 @@ function Results() {
 } 
 
 //Timer Function
-
 var countdownTimer = document.querySelector("#countdown");
 var timeLeft = 76;
 var timeInterval;
@@ -105,19 +103,20 @@ function ShowQuestion() {
         Results();
     } else {
         questions.innerHTML = AskQuestions.question;
-        ChoiceOne.innerHTML = AskQuestions.Choices[1];
-        ChoiceTwo.innerHTML = AskQuestions.Choices[2];
-        ChoiceThree.innerHTML = AskQuestions.Choices[3];
-        ChoiceFour.innerHTML = AskQuestions.Choices[4];  
+        ChoiceOne.innerHTML = AskQuestions.Choices[0];
+        ChoiceTwo.innerHTML = AskQuestions.Choices[1];
+        ChoiceThree.innerHTML = AskQuestions.Choices[2];
+        ChoiceFour.innerHTML = AskQuestions.Choices[3];  
     }
 }
+
 // Answers To Questions
-Questions.addEventListener("click", ShowAnswer);
+ChoiceOne.addEventListener("click", ShowAnswer);
 ChoiceTwo.addEventListener("click", ShowAnswer);
 ChoiceThree.addEventListener("click", ShowAnswer);
 ChoiceFour.addEventListener("click", ShowAnswer);
 
-var Contaianer4 = document.querySelector("#Container4"); 
+var ContainerFour = document.querySelector("#Container4"); 
 
 function ShowAnswer (event) {
     var selectedChoice = event.target;
@@ -130,10 +129,10 @@ function ShowAnswer (event) {
         ShowQuestion();
 
         // Answer is Correct
-        Container4.setAttribute("class", "View");
-        Container4.textContent = "Correct!";
+        ContainerFour.setAttribute("class", "View");
+        ContainerFour.textContent = "Correct!";
         setTimeout(function () {
-            Container4.textContent = "";    
+            ContainerFour.textContent = "";    
         }, 1000);
     } else {
         
@@ -143,19 +142,21 @@ function ShowAnswer (event) {
         ShowQuestion();
 
         // Answer is Incorrect
-        Container4.setAttribute("class", "View");
-        Container4.textContent = "Incorrect!";
+        ContainerFour.setAttribute("class", "View");
+        ContainerFour.textContent = "Incorrect!";
         setTimeout(function () {
-            Container4.textContent = "";    
+            ContainerFour.textContent = "";    
         }, 1000);
     }
 }
+
+
 // Scoring Functions
 var Submit = document.querySelector("#Submit");
 Submit.addEventListener("click", Save);
 
 var initials123 = document.querySelector("#initials"); 
-var userResults = document.querySelector("#Score"); 
+var userResults = document.querySelector("#Final-Score"); 
 var userinitials;
 var allScores = [];
 
@@ -163,7 +164,7 @@ function Save(event) {
     event.preventDefault();
     
     var Info = {
-        Score: timeLeft,
+        userResults: timeLeft,
         userinitials: initials123.value.trim()
     };
 
@@ -185,16 +186,16 @@ function Save(event) {
 var HighScore = document.querySelector("#High-Score");
 HighScore.addEventListener("click", ShowScores);
 
-var Score = document.querySelector("#Score");
+var Score = document.querySelector("#Score-Chart");
 
 function ShowScores() {
     
     // View & Shield applicable containers
     HeaderE.setAttribute("class", "Shield");
-    Container1.setAttribute("class", "Shield");
-    Container2.setAttribute("class", "Shield");
-    Container3.setAttribute("class", "Shield");
-    Container5.setAttribute("class", "View");
+    ContainerOne.setAttribute("class", "Shield");
+    ContainerTwo.setAttribute("class", "Shield");
+    ContainerThree.setAttribute("class", "Shield");
+    ContainerFive.setAttribute("class", "View");
 
     // Get Info from localStorage
     var Saved = JSON.parse(localStorage.getItem("Info"));
@@ -219,14 +220,14 @@ function ShowScores() {
         var li = document.createElement("li");
         li.textContent = `${allScores[i].userResults} - ${allScores[i].userinitials}`;
         li.setAttribute("data-index", i);
-        li.setAttribute("class", "#Score");
+        li.setAttribute("class", "#Score-Chart");
         Score.appendChild(li);
       }    
 }
 
 // Clear Results
-var Clear = document.querySelector("#Clear");
-Clear.addEventListener("click", ClearResults);
+var ClearB = document.querySelector("#Clear-B");
+ClearB.addEventListener("click", ClearResults);
 
 function ClearResults() {
     localStorage.clear();
@@ -241,11 +242,11 @@ function ResetAll() {
 
     // View & Shield applicable containers
     HeaderE.setAttribute("class", "View");
-    Container1.setAttribute("class", "View");
-    Container2.setAttribute("class", "Shield");
-    Container3.setAttribute("class", "Shield");
-    Container5.setAttribute("class", "Shield");
-    Container4.setAttribute("class", "Shield");
+    ContainerOne.setAttribute("class", "View");
+    ContainerTwo.setAttribute("class", "Shield");
+    ContainerThree.setAttribute("class", "Shield");
+    ContainerFive.setAttribute("class", "Shield");
+    ContainerFour.setAttribute("class", "Shield");
     
     // Reset
     timeLeft = 76;
