@@ -12,18 +12,18 @@ StartButton.addEventListener("click", StartCodeQuiz)
 
 function StartCodeQuiz() {
 
-// View & Shield Containers
-HeaderE.setAttribute("class", "View");
-Container1.setAttribute("class", "Shield");
-Container2.setAttribute("class", "View");
-Container3.setAttribute("class", "Shield");
-Container5.setAttribute("class", "Shield");
+    // View & Shield Containers
+    HeaderE.setAttribute("class", "View");
+    Container1.setAttribute("class", "Shield");
+    Container2.setAttribute("class", "View");
+    Container3.setAttribute("class", "Shield");
+    Container5.setAttribute("class", "Shield");
 
-// Timer Start
-TimerStart();
+    // Timer Start
+    TimerStart();
 
-// Show Questions
-ShowQuestion();
+    // Show Questions
+    ShowQuestion();
 }
 
 function Results() {
@@ -105,10 +105,10 @@ function ShowQuestion() {
         Results();
     } else {
         questions.innerHTML = AskQuestions.question;
-        ChoiceOne.innerHTML = AskQuestions.Choices[0];
-        ChoiceTwo.innerHTML = AskQuestions.Choices[1];
-        ChoiceThree.innerHTML = AskQuestions.Choices[2];
-        ChoiceFour.innerHTML = AskQuestions.Choices[3];  
+        ChoiceOne.innerHTML = AskQuestions.Choices[1];
+        ChoiceTwo.innerHTML = AskQuestions.Choices[2];
+        ChoiceThree.innerHTML = AskQuestions.Choices[3];
+        ChoiceFour.innerHTML = AskQuestions.Choices[4];  
     }
 }
 // Answers To Questions
@@ -154,9 +154,9 @@ function ShowAnswer (event) {
 var Submit = document.querySelector("#Submit");
 Submit.addEventListener("click", Save);
 
-var Initials = document.querySelector("#initials"); 
-var Score = document.querySelector("#Score"); 
-var userInitials;
+var initials = document.querySelector("#initials"); 
+var userResults = document.querySelector("#Score"); 
+var userinitials;
 var allScores = [];
 
 function Save(event) {
@@ -164,11 +164,11 @@ function Save(event) {
     
     var Info = {
         Score: timeLeft,
-        userInitials: Initials.value.trim()
+        userinitials: initials.value.trim()
     };
 
     // To add Info only if input field is filled
-    if (userInitials === "") {
+    if (userinitials === "") {
         alert("Field cannot be left blank");
         return false;
     } else {
@@ -208,7 +208,7 @@ function ShowScores() {
 
     // Sort Scores
     allScores.sort(function (a,b) {
-        return b.userScore - a.userScore;
+        return b.userResults - a.userResults;
     });
 
     // Clear the scores
@@ -217,7 +217,7 @@ function ShowScores() {
     // New li for each score 
     for (var i = 0; i < allScores.length; i++) {
         var li = document.createElement("li");
-        li.textContent = `${allScores[i].userScore} - ${allScores[i].userInitials}`;
+        li.textContent = `${allScores[i].userResults} - ${allScores[i].userInitials}`;
         li.setAttribute("data-index", i);
         li.setAttribute("class", "#Score");
         Score.appendChild(li);
@@ -234,8 +234,8 @@ function ClearResults() {
 }
 
 // Go-Back
-var GoBack = document.querySelector("#Go-Back");
-GoBack.addEventListener("click", ResetAll);
+var Goback = document.querySelector("#Go-back");
+Goback.addEventListener("click", ResetAll);
 
 function ResetAll() {
 
@@ -250,6 +250,6 @@ function ResetAll() {
     // Reset
     timeLeft = 76;
     QuizIndex = 0;
-    initialInput.value = "";
+    Initials.value = "";
     countdownTimer.textContent = "0";
 }
