@@ -154,7 +154,7 @@ function ShowAnswer (event) {
 var Submit = document.querySelector("#Submit");
 Submit.addEventListener("click", Save);
 
-var initials = document.querySelector("#initials"); 
+var initials123 = document.querySelector("#initials"); 
 var userResults = document.querySelector("#Score"); 
 var userinitials;
 var allScores = [];
@@ -164,7 +164,7 @@ function Save(event) {
     
     var Info = {
         Score: timeLeft,
-        userinitials: initials.value.trim()
+        userinitials: initials123.value.trim()
     };
 
     // To add Info only if input field is filled
@@ -217,7 +217,7 @@ function ShowScores() {
     // New li for each score 
     for (var i = 0; i < allScores.length; i++) {
         var li = document.createElement("li");
-        li.textContent = `${allScores[i].userResults} - ${allScores[i].userInitials}`;
+        li.textContent = `${allScores[i].userResults} - ${allScores[i].userinitials}`;
         li.setAttribute("data-index", i);
         li.setAttribute("class", "#Score");
         Score.appendChild(li);
@@ -250,6 +250,6 @@ function ResetAll() {
     // Reset
     timeLeft = 76;
     QuizIndex = 0;
-    Initials.value = "";
+    initials123.value = "";
     countdownTimer.textContent = "0";
 }

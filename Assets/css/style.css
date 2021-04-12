@@ -59,22 +59,22 @@ main {
 }
 
 #Container1 p,
-#Container4 p,
+#Container3 p,
 label {
     font-size: 1.25em;
     padding-bottom: 25px;
 }
 
 #Container1 h1,
-#Container4 h1, 
-#COntainer3 h1 {
+#Container3 h1, 
+#COntainer5 h1 {
     font-size: 2em;
     padding: 25px 0 25px 0;
 }
 
 #Container2,
-#Container4,
-#Container5 {
+#Container3,
+#Container4 {
     text-align: left;
 }
 
@@ -88,7 +88,7 @@ label {
     list-style: none;
 }
 
-#Container-5 {
+#Container-4 {
     font-size: 1.25em;
     font-weight: bold;
     font-style: italic;
